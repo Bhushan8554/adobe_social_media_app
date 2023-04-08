@@ -15,12 +15,13 @@ public interface UserService {
 	
 	public UserDTO deleteUser(Integer id)throws UserException;
 	
-	public UserDTO updateUser(Integer id)throws UserException;
 	
 	public UserDTO getUser(Integer id)throws UserException;
 	
 	public Integer TotalUser()throws UserException;
 	
 	public List<UserDTO> Top5User()throws UserException;
+
+	public UserDTO updateUser(Integer id, UserDTO u) throws UserException;
 	
 }

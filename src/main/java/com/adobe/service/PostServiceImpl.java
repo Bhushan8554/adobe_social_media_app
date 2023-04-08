@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.adobe.exceptions.PostException;
 import com.adobe.exceptions.UserException;
 import com.adobe.model.PostDTO;
-import com.adobe.model.UserDTO;
 import com.adobe.repository.PostRepository;
 import com.adobe.repository.UserRepository;
 
@@ -32,7 +31,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostDTO updatePost(Integer id) throws PostException {
+	public PostDTO updatePost(Integer id, PostDTO p) throws PostException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -62,7 +61,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<UserDTO> Top5Post() throws PostException {
+	public List<PostDTO> Top5Post() throws PostException {
 		// TODO Auto-generated method stub
 		return null;
 	}

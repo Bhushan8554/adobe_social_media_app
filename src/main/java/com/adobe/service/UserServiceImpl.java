@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO updateUser(Integer id) throws UserException {
+	public UserDTO updateUser(Integer id, UserDTO u) throws UserException {
 		// TODO Auto-generated method stub
 		return null;
 	}

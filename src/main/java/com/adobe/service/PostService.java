@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.adobe.exceptions.PostException;
 import com.adobe.exceptions.UserException;
 import com.adobe.model.PostDTO;
-import com.adobe.model.UserDTO;
 
 @Service
 public interface PostService {
@@ -16,7 +15,7 @@ public interface PostService {
 	
 	public PostDTO deletePost(Integer id)throws PostException;
 	
-	public PostDTO updatePost(Integer id)throws PostException;
+	public PostDTO updatePost(Integer id,PostDTO p)throws PostException;
 	
 	public PostDTO getPost(Integer id)throws PostException;
 	
@@ -26,6 +25,6 @@ public interface PostService {
 	
 	public Integer TotalPost()throws PostException;
 	
-	public List<UserDTO> Top5Post()throws PostException;
+	public List<PostDTO> Top5Post()throws PostException;
 	
 }
