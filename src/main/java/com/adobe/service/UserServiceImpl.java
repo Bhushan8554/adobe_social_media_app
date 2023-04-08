@@ -1,7 +1,6 @@
 package com.adobe.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,8 +42,9 @@ public class UserServiceImpl implements UserService {
 		if(user==null) {
 			throw new UserException("User not exist with id "+id);
 		}
-		
-		return new UserDTO(userRepository.save(new User(u)));
+		User us=new User(u);
+		us.setPost(user.getPost());
+		return new UserDTO(userRepository.save(us));
 	}
 
 	@Override
@@ -70,13 +70,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDTO> Top5User() throws UserException {
 		// TODO Auto-generated method stub
-		List<User> users=userRepository.findTop5ByPostOrderByPostsList();
-		if(users.isEmpty()) {
-			throw new UserException("no user found");
-		}
-		List<UserDTO> u=users.stream().map(s-> new UserDTO(s)).toList();
+//		List<User> users=userRepository.findTop5ByPostOrderByPostsList();
+//		if(users.isEmpty()) {
+//			throw new UserException("no user found");
+//		}
+//		List<UserDTO> u=users.stream().map(s-> new UserDTO(s)).toList();
 		
-		return u;
+		return null;
 		
 	}
 

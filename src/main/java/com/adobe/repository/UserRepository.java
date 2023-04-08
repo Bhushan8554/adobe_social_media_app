@@ -8,5 +8,5 @@ import com.adobe.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	List<User> findTop5ByPostOrderByPostsList();
+	//List<User> findTop5ByPostOrderByPostsList();
 }
