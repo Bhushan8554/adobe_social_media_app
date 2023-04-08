@@ -1,5 +1,6 @@
 package com.adobe.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class UserServiceImpl implements UserService {
 		if(user!=null) {
 			throw new UserException("User already exist");
 		}
+		p.setCreated_at(LocalDateTime.now());
+		p.setUpdated_at(null);
 		userRepository.save(new User(p));
 		return p;
 	}
@@ -42,9 +45,12 @@ public class UserServiceImpl implements UserService {
 		if(user==null) {
 			throw new UserException("User not exist with id "+id);
 		}
-		User us=new User(u);
-		us.setPost(user.getPost());
-		return new UserDTO(userRepository.save(us));
+		
+		user.setBio(u.getBio()!=null?u.getBio():user.getBio());
+		user.setName(u.getName()!=null?u.getName():user.getName());
+		user.setUpdated_at(LocalDateTime.now());
+		
+		return new UserDTO(userRepository.save(user));
 	}
 
 	@Override

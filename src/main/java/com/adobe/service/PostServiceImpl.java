@@ -1,5 +1,6 @@
 package com.adobe.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class PostServiceImpl implements PostService {
 		if(post!=null) {
 			throw new PostException("post already exist");
 		}
+		p.setUpdated_at(null);
+		p.setCreated_at(LocalDateTime.now());
+		p.setLikes(0);
 		return new PostDTO( postRepository.save(new Post(p)));
 		
 	}
@@ -52,9 +56,10 @@ public class PostServiceImpl implements PostService {
 		if(post==null) {
 			throw new PostException("post not exist with id "+id);
 		}
-		Post ps=new Post(p);
-		 ps.setU(post.getU());
-		return new PostDTO(postRepository.save(ps));
+		post.setContent(p.getContent());
+		post.setUpdated_at(LocalDateTime.now());
+		
+		return new PostDTO(postRepository.save(post));
 	}
 
 	@Override
@@ -83,7 +88,7 @@ public class PostServiceImpl implements PostService {
 		if(post==null) {
 			throw new PostException("post not exist with id "+id);
 		}
-		post.setLikes(post.getLikes()-1);
+		post.setLikes(post.getLikes()-1<0?0:post.getLikes()-1);
 		return new PostDTO(postRepository.save(post));
 	}
 
