@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.adobe.model.Post;
-import com.adobe.model.User;
 
 public interface PostRepository extends JpaRepository<Post, Integer>{
 	

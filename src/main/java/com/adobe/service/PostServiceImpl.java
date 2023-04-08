@@ -9,7 +9,6 @@ import com.adobe.exceptions.UserException;
 import com.adobe.model.Post;
 import com.adobe.model.PostDTO;
 import com.adobe.model.User;
-import com.adobe.model.UserDTO;
 import com.adobe.repository.PostRepository;
 import com.adobe.repository.UserRepository;
 
