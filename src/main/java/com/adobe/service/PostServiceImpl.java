@@ -8,14 +8,16 @@ import com.adobe.exceptions.PostException;
 import com.adobe.exceptions.UserException;
 import com.adobe.model.PostDTO;
 import com.adobe.model.UserDTO;
+import com.adobe.repository.PostRepository;
+import com.adobe.repository.UserRepository;
 
 public class PostServiceImpl implements PostService {
 
 	@Autowired
-	PostService postService;
+	PostRepository postRepository;
 	
 	@Autowired 
-	UserService userService;
+	UserRepository userRepository;
 	
 	@Override
 	public PostDTO addPost(PostDTO p, Integer u_id) throws PostException, UserException {
