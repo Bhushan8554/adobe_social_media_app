@@ -70,13 +70,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDTO> Top5User() throws UserException {
 		// TODO Auto-generated method stub
-//		List<User> users=userRepository.findTop5ByPostOrderByPostsList();
-//		if(users.isEmpty()) {
-//			throw new UserException("no user found");
-//		}
-//		List<UserDTO> u=users.stream().map(s-> new UserDTO(s)).toList();
+		List<User> users=userRepository.getTop5();
+		if(users.isEmpty()) {
+			throw new UserException("no user found");
+		}
+		List<UserDTO> u=users.stream().map(s-> new UserDTO(s)).toList();
 		
-		return null;
+		return u;
 		
 	}
 

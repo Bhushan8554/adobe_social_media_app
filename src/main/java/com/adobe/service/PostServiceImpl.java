@@ -99,13 +99,13 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostDTO> Top5Post() throws PostException {
-//		List<Post> posts=postRepository.findTop5OrderByLikesList();
-//		if(posts.isEmpty()) {
-//			throw new PostException("no posts found");
-//		}
-//		List<PostDTO> u=posts.stream().map(s-> new PostDTO(s)).toList();
-//		
-		return null;
+		List<Post> posts=postRepository.getTop5();
+		if(posts.isEmpty()) {
+			throw new PostException("no posts found");
+		}
+		List<PostDTO> u=posts.stream().map(s-> new PostDTO(s)).toList();
+		
+		return u;
 	}
 
 }
