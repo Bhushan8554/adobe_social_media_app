@@ -14,18 +14,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class PostDTO {
 
 	@Id
 	private Integer id;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private User u;
 	private String content;
 	private LocalDateTime created_at;
 	private LocalDateTime updated_at;
 	private Integer likes;
-
-	public Post(PostDTO p) {
+	public PostDTO(Post p) {
 		super();
 		this.id = p.getId();
 		this.content = p.getContent();
@@ -33,4 +30,6 @@ public class Post {
 		this.updated_at = p.getUpdated_at();
 		this.likes = p.getLikes();
 	}
+
+	
 }

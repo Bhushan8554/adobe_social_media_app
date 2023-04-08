@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserDTO {
 
 	@Id
 	private Integer id;
@@ -24,11 +24,7 @@ public class User {
 	private String bio;
 	private LocalDateTime created_at;
 	private LocalDateTime updated_at;
-	@OneToMany
-	private List<Post> post=new ArrayList<>();
-	
-	
-	public User(UserDTO u) {
+	public UserDTO(User u) {
 		super();
 		this.id = u.getId();
 		this.name = u.getName();
@@ -37,5 +33,8 @@ public class User {
 		this.created_at = u.getCreated_at();
 		this.updated_at = u.getUpdated_at();
 	}
+	
+	
+	
 	
 }
