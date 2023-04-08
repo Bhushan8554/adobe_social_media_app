@@ -45,7 +45,7 @@ public class PostController {
 	public ResponseEntity<PostDTO> likePostMapping(@PathVariable Integer id) {
 		return null;
 	}
-	@PostMapping("/posts/{id}/like")
+	@PostMapping("/posts/{id}/unlike")
 	public ResponseEntity<PostDTO> unlikePostMapping(@PathVariable Integer id) {
 		return null;
 	}
