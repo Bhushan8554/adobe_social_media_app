@@ -29,13 +29,15 @@ public class PostServiceImpl implements PostService {
 			throw new UserException("User not exist with id "+u_id);
 		}
 		
-		Post post=postRepository.findById(p.getId()).orElse(null);
-		if(post!=null) {
-			throw new PostException("post already exist");
-		}
+//		Post post=postRepository.findById(p.getId()).orElse(null);
+//		if(post!=null) {
+//			throw new PostException("post already exist");
+//		}
+		p.setId(null);
 		p.setUpdated_at(null);
 		p.setCreated_at(LocalDateTime.now());
 		p.setLikes(0);
+		
 		return new PostDTO( postRepository.save(new Post(p)));
 		
 	}

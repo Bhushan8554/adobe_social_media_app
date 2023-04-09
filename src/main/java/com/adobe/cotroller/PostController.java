@@ -28,6 +28,7 @@ public class PostController {
 	
 	@PostMapping("/posts")
 	public ResponseEntity<PostDTO> addPostMapping(@RequestBody PostDTO p,@RequestParam Integer u_id) throws PostException, UserException {
+		System.out.println(u_id);
 		return new ResponseEntity<PostDTO>(postService.addPost(p, u_id),HttpStatus.CREATED);
 	}
 	
