@@ -33,7 +33,7 @@ public class UserController {
 	
 	@GetMapping("/users")
 	public ResponseEntity<List<UserDTO>> getAllUsersMapping() throws PostException, UserException {
-		return new ResponseEntity<List<UserDTO>>(UserService.getAllUsers(),HttpStatus.CREATED);
+		return new ResponseEntity<List<UserDTO>>(UserService.getAllUsers(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/users/{id}")

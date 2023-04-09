@@ -63,4 +63,9 @@ public class PostController {
 		return new ResponseEntity<List<PostDTO>>(postService.Top5Post(),HttpStatus.OK);
 	}
 	
+	@GetMapping("/posts")
+	public ResponseEntity<List<PostDTO>> getAllPostsMapping() throws PostException {
+		return new ResponseEntity<List<PostDTO>>(postService.getAllPosts(),HttpStatus.OK);
+	}
+	
 }

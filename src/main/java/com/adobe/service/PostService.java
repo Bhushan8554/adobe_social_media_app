@@ -26,5 +26,7 @@ public interface PostService {
 	public Integer TotalPost()throws PostException;
 	
 	public List<PostDTO> Top5Post()throws PostException;
+
+	List<PostDTO> getAllPosts() throws PostException;
 	
 }

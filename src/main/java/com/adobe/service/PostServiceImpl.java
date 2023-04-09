@@ -111,5 +111,16 @@ public class PostServiceImpl implements PostService {
 		
 		return u;
 	}
+	
+	@Override
+	public List<PostDTO> getAllPosts() throws PostException {
+		List<Post> posts=postRepository.findAll();
+		if(posts.isEmpty()) {
+			throw new PostException("no posts found");
+		}
+		List<PostDTO> u=posts.stream().map(s-> new PostDTO(s)).toList();
+		
+		return u;
+	}
 
 }
