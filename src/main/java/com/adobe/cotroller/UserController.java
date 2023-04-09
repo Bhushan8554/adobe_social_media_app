@@ -29,6 +29,11 @@ public class UserController {
 		return new ResponseEntity<UserDTO>(UserService.addUser(u),HttpStatus.CREATED);
 	}
 	
+	@GetMapping("/users")
+	public ResponseEntity<List<UserDTO>> getAllUsersMapping() throws PostException, UserException {
+		return new ResponseEntity<List<UserDTO>>(UserService.getAllUsers(),HttpStatus.CREATED);
+	}
+	
 	@GetMapping("/users/{id}")
 	public ResponseEntity<UserDTO> getUserMapping(@PathVariable Integer id) throws UserException {
 		return new ResponseEntity<UserDTO>(UserService.getUser(id),HttpStatus.OK);

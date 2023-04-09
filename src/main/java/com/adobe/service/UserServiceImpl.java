@@ -64,6 +64,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<UserDTO> getAllUsers() throws UserException {
+
+		List<User> users=userRepository.findAll();
+		if(users==null) {
+			throw new UserException("User not exist");
+		}
+		return users.stream().map(s-> new UserDTO(s)).toList();
+		
+	}
+	@Override
 	public Integer TotalUser() throws UserException {
 		// TODO Auto-generated method stub
 		Integer n=(int) userRepository.count();

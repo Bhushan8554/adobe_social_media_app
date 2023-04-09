@@ -23,5 +23,7 @@ public interface UserService {
 	public List<UserDTO> Top5User()throws UserException;
 
 	public UserDTO updateUser(Integer id, UserDTO u) throws UserException;
+
+	List<UserDTO> getAllUsers() throws UserException;
 	
 }
