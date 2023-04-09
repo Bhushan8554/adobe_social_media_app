@@ -38,7 +38,11 @@ public class PostServiceImpl implements PostService {
 		p.setCreated_at(LocalDateTime.now());
 		p.setLikes(0);
 		
-		return new PostDTO( postRepository.save(new Post(p)));
+		Post ps=new Post(p);
+		ps.setU(user);
+//		user.getPost().add(ps);
+//		userRepository.save(user);
+		return new PostDTO( postRepository.save(ps));
 		
 	}
 

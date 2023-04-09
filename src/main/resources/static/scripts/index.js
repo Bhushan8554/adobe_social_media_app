@@ -4,40 +4,40 @@
 
 //data fetch
 function fetchData(){
-    fetch("http://localhost:8080/users")
+    fetch("/users")
       .then(response => response.json())
       .then(result => append(result))
       .catch(error => console.log('error', error));
     
     }
     function fetchDataPost(){
-        fetch("http://localhost:8080/posts")
+        fetch("/posts")
           .then(response => response.json())
           .then(result => appendPost(result))
           .catch(error => console.log('error', error));
         
     }
     function likePost(id){
-        postMapp(`http://localhost:8080/posts/${id}/like`,"POST")
+        postMapp(`/posts/${id}/like`,"POST")
         fetchDataPost();
     
     }
     function dislikePost(id){
-        postMapp(`http://localhost:8080/posts/${id}/unlike`,"POST")
+        postMapp(`/posts/${id}/unlike`,"POST")
         fetchDataPost();
     }
     
     function deleteUser(id){
-        postMapp(`http://localhost:8080/users/${id}`,"DELETE")
+        postMapp(`/users/${id}`,"DELETE")
         fetchData();
     }
     function deletePost(id){
-        postMapp(`http://localhost:8080/posts/${id}`,"DELETE")
+        postMapp(`/posts/${id}`,"DELETE")
         fetchDataPost();
     }
 
     function viewPost(id){
-        fetch(`http://localhost:8080/posts/${id}`)
+        fetch(`/posts/${id}`)
         .then(response => response.json())
         .then(result => viewPost2(result))
         .catch(error => console.log('error', error));
@@ -76,7 +76,7 @@ function fetchData(){
             
     }
     function viewUser(id){
-        fetch(`http://localhost:8080/users/${id}`)
+        fetch(`/users/${id}`)
       .then(response => response.json())
       .then(result => viewUser2(result))
       .catch(error => console.log('error', error));
@@ -84,7 +84,7 @@ function fetchData(){
     }
 
     function viewUser2(data){
-        //let d=postMapp(`http://localhost:8080/users/${id}`,"GET")
+        //let d=postMapp(`/users/${id}`,"GET")
         console.log(data);
         let cont=document.querySelector("#con");
         cont.innerHTML=null;
@@ -119,7 +119,7 @@ function fetchData(){
     }
 
     function editPost(id){
-        let data=postMapp(`http://localhost:8080/posts/${id}`,"GET");
+        let data=postMapp(`/posts/${id}`,"GET");
         let cont=document.querySelector("#con");
         cont.innerHTML=null;
         cont.innerHTML=`<form onsubmit="updatePost(${id})">
@@ -147,7 +147,7 @@ function fetchData(){
         redirect: 'follow'
         };
     
-        fetch(`http://localhost:8080//posts/${id}`,requestOptions)
+        fetch(`/posts/${id}`,requestOptions)
         .then(response => response.json())
         .then(result => alert(JSON.stringify(result)))
         .catch(error => alert('error', error));
@@ -155,7 +155,7 @@ function fetchData(){
     }
 
     function editUser(id){
-        let data=postMapp(`http://localhost:8080/users/${id}`,"GET");
+        let data=postMapp(`/users/${id}`,"GET");
         let cont=document.querySelector("#con");
         cont.innerHTML=null;
         cont.innerHTML=`<form onsubmit="updateUser(${id})">
@@ -189,7 +189,7 @@ function fetchData(){
         redirect: 'follow'
         };
     
-        fetch(`http://localhost:8080/users/${id}`,requestOptions)
+        fetch(`/users/${id}`,requestOptions)
         .then(response => response.json())
         .then(result => alert(JSON.stringify(result)))
         .catch(error => alert('error', error));
@@ -197,6 +197,151 @@ function fetchData(){
     
     }
 
+    function userAnalytics(){
+        let cont=document.querySelector("#con");
+        cont.innerHTML=null;
+        cont.innerHTML=`<div class="row">
+        <div class="col" id="total">
+            
+        </div>
+        <div class="col" id="top"></div>
+        </div>`;
+        
+        fetch("/analytics/users/top-active")
+        .then(response => response.json())
+        .then(result => append2(result))
+        .catch(error => console.log('error', error));
+
+        fetch("/analytics/users")
+        .then(response => response.json())
+        .then(result => document.querySelector("#total").innerHTML=`<p>Total User </p>
+        <h1>${result}</h1>`)
+        .catch(error => console.log('error', error));
+
+    }
+
+    let append2=(arr)=>{
+        
+        // console.log(arr); 
+        let cont=document.querySelector("#top");
+        cont.innerHTML=null;
+         for(let i=0;i<arr.length;i++){
+            let div=document.createElement("div");
+            div.className="toppost";
+            div.innerHTML=`<div class="row">
+            <div class="col">
+                <h1>${arr[i].name}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>${arr[i].email}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>${arr[i].bio}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>created at :- ${arr[i].created_at}</p>
+            </div>
+            <div class="col">
+                <p>updated at :- ${arr[i].updated_at}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary btn-sm" onclick="viewUser(${arr[i].id})">View</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary btn-sm" onclick="editUser(${arr[i].id})">Edit</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger btn-sm" onclick="deleteUser(${arr[i].id})">Delete</button>
+            </div>
+        </div>`;
+    
+        cont.append(div);
+            
+         }
+    
+    
+     }
+
+    function postAnalytics(){
+        let cont=document.querySelector("#con");
+        cont.innerHTML=null;
+        cont.innerHTML=`<div class="row">
+        <div class="col" id="total">
+            
+        </div>
+        <div class="col" id="top"></div>
+        </div>`;
+        
+        fetch("/analytics/posts")
+        .then(response => response.json())
+        .then(result => document.querySelector("#total").innerHTML=`<p>Total posts </p>
+        <h1>${result}</h1>`)
+        .catch(error => console.log('error', error));
+
+        fetch("/analytics/posts/top-liked")
+        .then(response => response.json())
+        .then(result => appendPost2(result))
+        .catch(error => console.log('error', error));
+
+    }
+    let appendPost2=(arr)=>{
+        
+        // console.log(arr); 
+        let cont=document.querySelector("#top");
+        cont.innerHTML=null;
+         for(let i=0;i<arr.length;i++){
+            let div=document.createElement("div");
+            div.className="toppost";
+            div.innerHTML=`<div class="row">
+            <div class="col">
+                <p>${arr[i].content}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>likes :- ${arr[i].likes}</p>
+            </div>
+            <div class="col">
+                <button class="btn btn-sm btn-primary" onclick="likePost(${arr[i].id})"> like post</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-sm" onclick="dislikePost(${arr[i].id})"> dislike post</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>created at :- ${arr[i].created_at}</p>
+            </div>
+            <div class="col">
+                <p>updated at :- ${arr[i].updated_at}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary btn-sm" onclick="viewPost(${arr[i].id})">View</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary btn-sm" onclick="editPost(${arr[i].id})">Edit</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger btn-sm" onclick="deletePost(${arr[i].id})">Delete</button>
+            </div>
+        </div>`;
+    
+        cont.append(div);
+            
+         }
+    
+    
+     }
     let appendPost=(arr)=>{
         
         // console.log(arr); 
@@ -283,7 +428,7 @@ function fetchData(){
         redirect: 'follow'
         };
     
-        fetch(`http://localhost:8080/posts?u_id=${id}`,requestOptions)
+        fetch(`/posts?u_id=${id}`,requestOptions)
         .then(response => response.json())
         .then(result => alert(JSON.stringify(result)))
         .catch(error => alert('error', error));
@@ -313,7 +458,7 @@ function fetchData(){
         redirect: 'follow'
         };
     
-        fetch("http://localhost:8080/users",requestOptions)
+        fetch("/users",requestOptions)
         .then(response => response.json())
         .then(result => alert(JSON.stringify(result)))
         .catch(error => alert('error', error));

@@ -9,6 +9,7 @@ import com.adobe.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	@Query("select u from User u inner join Post p on u.id=p.u.id group by u.id order by count(p.id) desc")
+	@Query("select u from User u left join Post p on u.id=p.u.id group by u.id order by count(p.id) desc limit 5")
 	List<User> getTop5();
+	
 }

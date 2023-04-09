@@ -16,3 +16,13 @@ form{
 form>h3{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.toppost{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 20px;
+}
+#total{
+    text-align: center;
+    margin: auto;
+}
