@@ -27,11 +27,44 @@ fetch("http://localhost:8080/users")
   .catch(error => console.log('error', error));
 
 }
+
+
+function addUserInData(){
+    event.preventDefault();
+    let id=document.querySelector("#id").value;
+    let name=document.querySelector("#name").value;
+    let email=document.querySelector("#email").value;
+    let bio=document.querySelector("#bio").value;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+    "id": id,
+    "name": name,
+    "email": email,
+    "bio": bio
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/users",requestOptions)
+    .then(response => response.json())
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert('error', error));
+
+
+}
+
  
  let append=(arr)=>{
     
     // console.log(arr); 
     let cont=document.querySelector("#con");
+    cont.innerHTML=null;
      for(let i=0;i<arr.length;i++){
         let div=document.createElement("div");
         div.className="container";
