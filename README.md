@@ -3,8 +3,11 @@
 # Diployed Link
 <hr>
 <br>
-<br>
+##for frontend
+https://adobesocialmediaapp-production.up.railway.app/index.html
 
+##for postman
+https://adobesocialmediaapp-production.up.railway.app
 
 # Modules
 <hr>
