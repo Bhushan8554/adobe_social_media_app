@@ -19,7 +19,7 @@ import com.adobe.exceptions.PostException;
 import com.adobe.exceptions.UserException;
 import com.adobe.model.PostDTO;
 import com.adobe.service.PostService;
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "https://adobesocialmediaapp-production.up.railway.app")
 @RestController
 public class PostController {
 

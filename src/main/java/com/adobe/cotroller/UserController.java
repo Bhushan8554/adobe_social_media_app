@@ -19,7 +19,7 @@ import com.adobe.exceptions.UserException;
 import com.adobe.model.UserDTO;
 import com.adobe.service.UserService;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "https://adobesocialmediaapp-production.up.railway.app")
 @RestController
 public class UserController {
 
